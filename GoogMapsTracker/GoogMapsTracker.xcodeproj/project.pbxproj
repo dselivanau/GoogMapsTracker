@@ -16,6 +16,8 @@
 		4F54D6672A9787D300BE7DDC /* GoogleMapsCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4F54D6662A9787D300BE7DDC /* GoogleMapsCore */; };
 		4F54D6692A9787D300BE7DDC /* GoogleMapsM4B in Frameworks */ = {isa = PBXBuildFile; productRef = 4F54D6682A9787D300BE7DDC /* GoogleMapsM4B */; };
 		4F54D66B2A9787D300BE7DDC /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 4F54D66A2A9787D300BE7DDC /* GooglePlaces */; };
+		4F54D66D2A978A3700BE7DDC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F54D66C2A978A3700BE7DDC /* GoogleService-Info.plist */; };
+		4F54D66F2A97952A00BE7DDC /* MapsViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F54D66E2A97952A00BE7DDC /* MapsViewContoller.swift */; };
 		4FBEBEAB2A97689100BA70EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBEBEAA2A97689100BA70EB /* AppDelegate.swift */; };
 		4FBEBEAD2A97689100BA70EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBEBEAC2A97689100BA70EB /* SceneDelegate.swift */; };
 		4FBEBEAF2A97689100BA70EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBEBEAE2A97689100BA70EB /* ViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F54D66C2A978A3700BE7DDC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4F54D66E2A97952A00BE7DDC /* MapsViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewContoller.swift; sourceTree = "<group>"; };
 		4FBEBEA72A97689100BA70EB /* GoogMapsTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogMapsTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBEBEAA2A97689100BA70EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FBEBEAC2A97689100BA70EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,10 +81,12 @@
 				4FBEBEAA2A97689100BA70EB /* AppDelegate.swift */,
 				4FBEBEAC2A97689100BA70EB /* SceneDelegate.swift */,
 				4FBEBEAE2A97689100BA70EB /* ViewController.swift */,
+				4F54D66E2A97952A00BE7DDC /* MapsViewContoller.swift */,
 				4FBEBEB02A97689100BA70EB /* Main.storyboard */,
 				4FBEBEB32A97689200BA70EB /* Assets.xcassets */,
 				4FBEBEB52A97689200BA70EB /* LaunchScreen.storyboard */,
 				4FBEBEB82A97689200BA70EB /* Info.plist */,
+				4F54D66C2A978A3700BE7DDC /* GoogleService-Info.plist */,
 			);
 			path = GoogMapsTracker;
 			sourceTree = "<group>";
@@ -159,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FBEBEB72A97689200BA70EB /* LaunchScreen.storyboard in Resources */,
+				4F54D66D2A978A3700BE7DDC /* GoogleService-Info.plist in Resources */,
 				4FBEBEB42A97689200BA70EB /* Assets.xcassets in Resources */,
 				4FBEBEB22A97689100BA70EB /* Main.storyboard in Resources */,
 			);
@@ -171,6 +178,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F54D66F2A97952A00BE7DDC /* MapsViewContoller.swift in Sources */,
 				4FBEBEAF2A97689100BA70EB /* ViewController.swift in Sources */,
 				4FBEBEAB2A97689100BA70EB /* AppDelegate.swift in Sources */,
 				4FBEBEAD2A97689100BA70EB /* SceneDelegate.swift in Sources */,
