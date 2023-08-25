@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vjj-4a-TDE">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -93,6 +94,7 @@
                     <connections>
                         <outlet property="enterEmail" destination="Pnf-hS-HB2" id="E5x-lz-LQx"/>
                         <outlet property="enterPassword" destination="4R1-gg-a3f" id="tBg-WS-YIc"/>
+                        <segue destination="cX5-kw-ghh" kind="push" id="1fQ-lg-ghr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -109,6 +111,7 @@
                         <viewLayoutGuide key="safeArea" id="exV-KD-cXk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8uc-iJ-Pmf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvb-Vd-Ljk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

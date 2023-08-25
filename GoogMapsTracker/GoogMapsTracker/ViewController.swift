@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        enterPassword.delegate = self
+        enterEmail.delegate = self
         // Do any additional setup after loading the view.
         let signedInUser = UserDefaults.standard.string(forKey: "id")
         if signedInUser != nil {
@@ -67,6 +70,7 @@ class ViewController: UIViewController {
                 print(user?.user.uid)
                 UserDefaults.standard.set(user!.user.uid, forKey: "id")
                 print("Without error")
+                self.navigationController?.pushViewController(MapsViewContoller(), animated: true)
             }
             
             
@@ -75,6 +79,12 @@ class ViewController: UIViewController {
     @IBAction func logoutBUtton(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: "id")
         print("removed id")
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }
 
