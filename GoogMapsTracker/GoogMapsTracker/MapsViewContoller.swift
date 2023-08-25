@@ -18,8 +18,8 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
     
     let users = [
         User(title: "User 1", image: "user1", coordinates: CLLocationCoordinate2D(latitude: 52.42737345173471, longitude: 31.01787866195918)),
-        User(title: "User 2", image: "user2", coordinates: CLLocationCoordinate2D(latitude: 52.42857345173471, longitude: 31.01787866195918)),
-        User(title: "User 3", image: "user3", coordinates: CLLocationCoordinate2D(latitude: 52.42937345173471, longitude: 31.01787866195918))
+        User(title: "User 2", image: "user2", coordinates: CLLocationCoordinate2D(latitude: 52.43895419185292, longitude: 31.00903786718845)),
+        User(title: "User 3", image: "user3", coordinates: CLLocationCoordinate2D(latitude: 52.43669995592446, longitude: 31.007389649748802))
     ]
 //end: 52.449888941039504, 31.036552973091602
     var locationManager = CLLocationManager()
@@ -139,13 +139,13 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
         
         let positions = users.map { $0.coordinates }
         var wayPoints = ""
-//        for point in positions {
-//            wayPoints = wayPoints.count == 0 ? "\(point.latitude),\(point.longitude)" : "\(wayPoints)%7C\(point.latitude),\(point.longitude)"
-//        }
+        for point in positions {
+            wayPoints = wayPoints.count == 0 ? "\(point.latitude),\(point.longitude)" : "\(wayPoints)%7C\(point.latitude),\(point.longitude)"
+        }
 
         let session = URLSession.shared
 
-        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=52.42737295090826,31.01787909865379&destination=52.449888941039504,31.036552973091602&waypoints=52.42937345173471,31.01787866195918&key=\(AppDelegate.apiKey)")!
+        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=52.42737295090826,31.01787909865379&destination=52.449888941039504,31.036552973091602&wayPoints=\(wayPoints)&key=\(AppDelegate.apiKey)")!
 
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
@@ -165,7 +165,7 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
             guard let legs = route["legs"] as? [Any] else { return }
             guard let leg = legs[0] as? [String: Any] else { return }
             guard let steps = leg["steps"] as? [Any] else { return }
-              for item in steps {
+            for item in steps {
                 guard let step = item as? [String: Any] else {
                     return
                 }
@@ -176,20 +176,20 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
                     return
                 }
                 //Call this method to draw path on map
-                  DispatchQueue.main.async {
-                      for user in self.users {
-                          let marker = GMSMarker()
-                          marker.title = user.title
-                          marker.iconView = UIImageView(image: UIImage(named: user.image))
-                          marker.iconView?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-                          marker.iconView?.layer.masksToBounds = true
-                          marker.iconView?.layer.cornerRadius = 15
-                          marker.position = user.coordinates
-                          marker.appearAnimation = .pop
-                          marker.map = self.mapView
-                      }
-                  }
-                  
+                DispatchQueue.main.async {
+                    for user in self.users {
+                        let marker = GMSMarker()
+                        marker.title = user.title
+                        marker.iconView = UIImageView(image: UIImage(named: user.image))
+                        marker.iconView?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+                        marker.iconView?.layer.masksToBounds = true
+                        marker.iconView?.layer.cornerRadius = 15
+                        marker.position = user.coordinates
+                        marker.appearAnimation = .pop
+                        marker.map = self.mapView
+                    }
+                }
+                
                 DispatchQueue.main.async {
                     self.drawPath(from: polyLineString)
                 }
