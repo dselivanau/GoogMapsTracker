@@ -19,7 +19,7 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
     let users = [
         User(title: "User 1", image: "user1", coordinates: CLLocationCoordinate2D(latitude: 52.42737345173471, longitude: 31.01787866195918)),
         User(title: "User 2", image: "user2", coordinates: CLLocationCoordinate2D(latitude: 52.43895419185292, longitude: 31.00903786718845)),
-        User(title: "User 3", image: "user3", coordinates: CLLocationCoordinate2D(latitude: 52.43669995592446, longitude: 31.007389649748802))
+        User(title: "User 3", image: "user3", coordinates: CLLocationCoordinate2D(latitude: 52.430507111833684, longitude: 31.00534077733755))
     ]
 //end: 52.449888941039504, 31.036552973091602
     var locationManager = CLLocationManager()
@@ -145,7 +145,7 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
 
         let session = URLSession.shared
 
-        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=52.42737295090826,31.01787909865379&destination=52.449888941039504,31.036552973091602&wayPoints=\(wayPoints)&key=\(AppDelegate.apiKey)")!
+        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=52.42737295090826,31.01787909865379&destination=52.449888941039504,31.036552973091602&mode=driving&waypoints=via:\(wayPoints)&key=\(AppDelegate.apiKey)")!
 
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
