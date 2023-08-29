@@ -69,6 +69,7 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
         mapView = GMSMapView(frame: view.frame)
         view.addSubview(mapView)
         
+        
         mapView.addSubview(destinationButton)
         mapView.addSubview(runButton)
         mapView.addSubview(destinationIcon)
@@ -145,7 +146,7 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
 
         let session = URLSession.shared
 
-        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=52.42737295090826,31.01787909865379&destination=52.449888941039504,31.036552973091602&mode=driving&waypoints=via:\(wayPoints)&key=\(AppDelegate.apiKey)")!
+        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=52.42737295090826,31.01787909865379&destination=\(destination.latitude),\(destination.longitude)&waypoints=via:\(wayPoints)&mode=driving&key=\(AppDelegate.apiKey)")!
 
         let task = session.dataTask(with: url, completionHandler: {
             (data, response, error) in
@@ -162,6 +163,7 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
             
             guard let routes = jsonResult["routes"] as? [Any] else { return }
             guard let route = routes[0] as? [String: Any] else { return }
+            guard let testValues = route["overview_polyline"] as? [String: Any] else { return }
             guard let legs = route["legs"] as? [Any] else { return }
             guard let leg = legs[0] as? [String: Any] else { return }
             guard let steps = leg["steps"] as? [Any] else { return }
@@ -190,15 +192,21 @@ class MapsViewContoller: UIViewController, UINavigationBarDelegate {
                     }
                 }
                 
-                DispatchQueue.main.async {
-                    self.drawPath(from: polyLineString)
-                }
+                
+            }
+            
+            DispatchQueue.main.async {
+                self.drawPath(from: (testValues["points"] as? String)!)
             }
         })
         task.resume()
     }
     
     func drawPath(from polyStr: String){
+        
+//        let path = GMSPath(fromEncodedPath: polyStr)
+//        let routePolyline = GMSPolyline(path: path)
+//        routePolyline.map = mapView
         let path = GMSPath(fromEncodedPath: polyStr)
         let polyline = GMSPolyline(path: path)
         polyline.strokeWidth = 3.0
@@ -228,6 +236,7 @@ extension MapsViewContoller: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("UPdate locatiosn")
         guard let location = locations.first else { return }
         let point = CLLocationCoordinate2D(latitude: location.coordinate.latitude,
                                            longitude: location.coordinate.longitude)
